@@ -1,0 +1,24 @@
+{
+  "name": "pg-realadmin",
+  "version": "1.0.0",
+  "description": "Postgresql, SQL, Admin",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akinba/pg-realadmin.git"
+  },
+  "author": "BSA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akinba/pg-realadmin/issues"
+  },
+  "homepage": "https://github.com/akinba/pg-realadmin#readme",
+  "dependencies": {
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.37.4"
+  }
+}
