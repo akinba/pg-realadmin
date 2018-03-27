@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/akinba/pg-realadmin#readme",
   "dependencies": {
+    "ejs": "^2.5.8",
+    "express": "^4.16.3",
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.37.4"

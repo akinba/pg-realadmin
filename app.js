@@ -1,5 +1,14 @@
 const seq = require('sequelize');
 const db = new seq('postgres://postgres:pi@akinba.com:5432/gadron');
+const express = require('express')
+const app = express()
+const bodyparser = require("body-parser");
+
+const port = process.env.PORT||3000;
+
+app.use(bodyparser.urlencoded({extended: true}));
+app.use(bodyparser.json());
+app.set("view engine", "ejs");
 
 // db
 //   .authenticate()
@@ -23,5 +32,18 @@ const db = new seq('postgres://postgres:pi@akinba.com:5432/gadron');
   });
 
 
-  tables.findAll().then(data=> {console.log(data)});
 
+app.get('/', (req, res) => {
+  tables.findAll({where : {table_schema:'public'}}).then(data=> {
+    // console.log(data);
+    res.render('index', {data: data}); 
+  });
+
+  });
+
+  
+
+
+app.listen(port,  ()=> {
+  console.log(`App listening on port ${port}`);
+  });

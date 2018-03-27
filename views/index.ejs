@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+	  <ul>
+	  	<li v-for="table in tables">
+	  		{{table}}
+	  	</li>
+	  </ul>
+	  <ul>
+	  	<li v-for="schema in schemas ">
+	  		{{schema}}
+	  		<ul>
+	  			<li v-for="table in tables">
+	  				{{table.table_name}}
+	  			</li>
+	  		</ul>
+	  	</li>
+	  </ul>
+
+	</div>
+
+<script type="text/javascript">
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    tables: <%- JSON.stringify(data) %>
+  },
+  computed: {
+  	schemas() {
+  		return [...new Set(this.tables.map(p=>p.table_schema))]
+  	}
+  }
+})
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
