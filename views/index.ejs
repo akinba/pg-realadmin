@@ -7,18 +7,18 @@
 <body>
 	<div id="app">
 	  <ul>
-	  	<li v-for="table in tables">
-	  		{{table}}
-	  	</li>
-	  </ul>
-	  <ul>
 	  	<li v-for="schema in schemas ">
 	  		{{schema}}
 	  		<ul>
-	  			<li v-for="table in tables">
+	  			<li v-for="table in schema_tables(schema)">
 	  				{{table.table_name}}
 	  			</li>
 	  		</ul>
+	  	</li>
+	  </ul>
+	  <ul>
+	  	<li v-for="table in tables">
+	  		{{table}}
 	  	</li>
 	  </ul>
 
@@ -34,6 +34,9 @@ var app = new Vue({
   computed: {
   	schemas() {
   		return [...new Set(this.tables.map(p=>p.table_schema))]
+  	},
+  	schema_tables() {
+  		return this.tables.filter(table =>table.table_schema==='public')
   	}
   }
 })

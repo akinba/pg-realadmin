@@ -34,7 +34,7 @@ app.set("view engine", "ejs");
 
 
 app.get('/', (req, res) => {
-  tables.findAll({where : {table_schema:'public'}}).then(data=> {
+  tables.findAll({where : {table_catalog:'gadron'}}).then(data=> {
     // console.log(data);
     res.render('index', {data: data}); 
   });
