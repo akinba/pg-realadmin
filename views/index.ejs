@@ -10,7 +10,7 @@
 	  	<li v-for="schema in schemas ">
 	  		{{schema}}
 	  		<ul>
-	  			<li v-for="table in schema_tables(schema)">
+	  			<li v-for="table in tables.filter(table =>table.table_schema===schema)">
 	  				{{table.table_name}}
 	  			</li>
 	  		</ul>
@@ -34,15 +34,11 @@ var app = new Vue({
   computed: {
   	schemas() {
   		return [...new Set(this.tables.map(p=>p.table_schema))]
-  	},
-  	schema_tables() {
-  		return this.tables.filter(table =>table.table_schema==='public')
   	}
   }
 })
 
 </script>
-
 </body>
 </html>
 

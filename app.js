@@ -24,6 +24,7 @@ app.set("view engine", "ejs");
   	table_catalog: seq.STRING,
   	table_schema: seq.STRING,
   	table_name: {type: seq.STRING, primaryKey:true},
+    table_type: seq.STRING,
   	is_insertable_into: seq.ENUM('YES','NO')
   }, {
   	schema: 'information_schema',
