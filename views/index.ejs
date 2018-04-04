@@ -3,6 +3,7 @@
 <head>
 	<title></title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
 </head>
 <body>
 	<div id="app">
@@ -10,7 +11,7 @@
 	  	<li v-for="schema in schemas ">
 	  		{{schema}}
 	  		<ul>
-	  			<li v-for="table in tables.filter(table =>table.table_schema===schema)">
+	  			<li v-for="table in _.filter(tables, {table_schema: schema})">
 	  				{{table.table_name}}
 	  			</li>
 	  		</ul>
@@ -33,7 +34,7 @@ var app = new Vue({
   },
   computed: {
   	schemas() {
-  		return [...new Set(this.tables.map(p=>p.table_schema))]
+  		return _.uniqBy(this.tables.map(p=>p.table_schema));
   	}
   }
 })
