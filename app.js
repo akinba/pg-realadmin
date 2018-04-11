@@ -1,10 +1,11 @@
 const seq = require('sequelize');
 const db = new seq('postgres://postgres:pi@akinba.com:5432/gadron');
+//const db = new seq('postgres://postgres:ntc123*@192.168.2.188:5432/musgis');
 const express = require('express')
 const app = express()
 const bodyparser = require("body-parser");
 
-const port = process.env.PORT||3000;
+const port = process.env.PORT||3001;
 
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json());
