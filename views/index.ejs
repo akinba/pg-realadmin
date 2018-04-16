@@ -6,17 +6,27 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+<!-- 	<style type="text/css">
+		.list {
+			background-color: lightgrey;
+			border: 1px groove grey;
+			border-radius: 5px
+		}
+		span {
+			background-color: lightblue;
+		}
+	</style> -->
 </head>
 <body>
 <div id="app" class="container">
-	<div class="row">
+<!-- 	<div class="row">
 		<div class="col-4">
-	<ul>
-		<li v-for="schema in schemas ">
-			{{schema}}
-			<ul>
-				<li v-for="table in _.filter(tables, {table_schema: schema})" class="alert alert-primary">
-					{{table.table_name}}
+	<ul class="list-group">
+		<li v-for="schema in schemas">
+			<div class="btn btn-sm btn-light" @click="show=!show">{{schema}}</div>
+			<ul v-if="show" class="btn-group-vertical">
+				<li v-for="table in _.filter(tables, {table_schema: schema})" class="list">
+					<div class="btn btn-sm btn-outline-info">{{table.table_name}}</div>
 				</li>
 			</ul>
 		</li>
@@ -29,13 +39,27 @@
 		<li v-for="table in tables">
 			{{table}}
 		</li>
+	</ul> -->
+	<ul class="list-group">
+		<com-schema v-for="schema in schemas" :schema="schema"></com-schema>
 	</ul>
-
 </div>
 
 <script type="text/javascript">
 
-Vue.component()
+Vue.component('com-schema', {
+	data: function(){
+		return {
+			show: false
+		}
+	},
+	props:['schema'],
+	template:'<li>'+
+			 '<button class="btn btn-sm btn-light" @click="show=!show">'+
+			 '{{schema}}</button>'+
+			 '<div v-if="show">Huhu</div>'+
+			 '</li>'
+})
 
 var app = new Vue({
   el: '#app',
