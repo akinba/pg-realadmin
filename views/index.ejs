@@ -18,7 +18,7 @@
 	</style> -->
 </head>
 <body>
-<div id="app" class="container">
+<div id="app" class="container row">
 <!-- 	<div class="row">
 		<div class="col-4">
 	<ul class="list-group">
@@ -40,12 +40,31 @@
 			{{table}}
 		</li>
 	</ul> -->
-	<ul class="list-group">
-		<com-schema v-for="schema in schemas" :schema="schema"></com-schema>
-	</ul>
+	<div class="col-4">
+		<ul class="list-group list-group-flush">
+			<com-schema v-for="schema in schemas" :schema="schema" :tables="tables"></com-schema>
+		</ul>
+	</div>
+	<div class="col-8">
+		
+	</div>
 </div>
 
 <script type="text/javascript">
+
+Vue.component('com-table', {
+	data: function(){
+		return {
+			attr:'test'
+		}
+	},
+	methods: {
+		gonder(){alert(this.attr);}
+	},
+	props: ['table'],
+	template:'<li class="list-group-item">'+
+			 '<button class="btn btn-sm btn-light" @click="gonder">{{table.table_name}}</button></li>'
+});
 
 Vue.component('com-schema', {
 	data: function(){
@@ -53,12 +72,20 @@ Vue.component('com-schema', {
 			show: false
 		}
 	},
-	props:['schema'],
-	template:'<li>'+
-			 '<button class="btn btn-sm btn-light" @click="show=!show">'+
-			 '{{schema}}</button>'+
-			 '<div v-if="show">Huhu</div>'+
+	props:['schema','tables'],
+	template:'<li class="list-group-item">'+
+			 '<button class="btn btn-sm btn-warning" @click="show=!show">'+
+			 '* {{schema}}</button>'+
+			 '<div v-if="show">'+
+			 '<ul class="list-group">'+
+			 '<com-table v-for="table in _.filter(tables, {table_schema: schema})" :table="table"></com-table>'+
+			 '</ul>'+
+			 '</div>'+
 			 '</li>'
+});
+
+Vue.component('com-attr', {
+
 })
 
 var app = new Vue({

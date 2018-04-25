@@ -1,6 +1,6 @@
 const seq = require('sequelize');
-const db = new seq('postgres://postgres:pi@akinba.com:5432/gadron');
-//const db = new seq('postgres://postgres:ntc123*@192.168.2.188:5432/musgis');
+//const db = new seq('postgres://postgres:pi@akinba.com:5432/gadron');
+const db = new seq('postgres://postgres:ntc123*@192.168.2.188:5432/musgis');
 const express = require('express')
 const app = express()
 const bodyparser = require("body-parser");
@@ -36,7 +36,7 @@ app.set("view engine", "ejs");
 
 
 app.get('/', (req, res) => {
-  tables.findAll({where : {table_catalog:'gadron'}}).then(data=> {
+  tables.findAll({where : {table_catalog:'musgis'}}).then(data=> {
     // console.log(data);
     res.render('index', {data: data}); 
   });
