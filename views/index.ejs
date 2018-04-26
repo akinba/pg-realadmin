@@ -46,7 +46,7 @@
 		</ul>
 	</div>
 	<div class="col-8">
-		
+		<com-attr></com-attr>
 	</div>
 </div>
 
@@ -85,8 +85,9 @@ Vue.component('com-schema', {
 });
 
 Vue.component('com-attr', {
-
-})
+	props:['attr'],
+	template:'<span style="background-color: red;">attr</span>'
+});
 
 var app = new Vue({
   el: '#app',
@@ -98,7 +99,7 @@ var app = new Vue({
   		return _.uniqBy(this.tables.map(p=>p.table_schema));
   	}
   }
-})
+});
 
 </script>
 </body>
